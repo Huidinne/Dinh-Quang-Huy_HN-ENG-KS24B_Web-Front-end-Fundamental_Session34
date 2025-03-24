@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        div {
+            box-shadow: 2px 2px 3px #aaaaaa;
+            border-radius: 10px;
+            background-color: white;
+            width: 500px;
+            margin: auto;
+            margin-top: 50px;
+        }
+        input {
+            border: 1px solid #d5d5d5;
+            border-radius: 5px;
+            width: 420px;
+            height: 35px;
+            padding: 0px 10px;
+        }
+        form {
+            padding: 30px;
+        }
+        h2 {
+            margin-top: 0px;
+            color: #333333;
+            text-align: center;
+        }
+        button {
+            border: none;
+            border-radius: 5px;
+            color: white;
+            background-color: #007bff;
+            width: 440px;
+            height: 35px;
+            font-size: 17px;
+        }
+        label {
+            color: #555555;
+        }
+        ul{
+            color: #555555;
+            padding: 0px;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 120px;
+        }
+        a{
+            text-decoration: none;
+            color: #0c84ff;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form id="loginForm" action="https://www.youtube.com/" method="post">
+            <h2>Login</h2>
+            <label for="email">Email:</label><br><br>
+            <input type="email" name="email" id="email" placeholder="Enter your email address" required><br><br>
+            <label for="password">Password:</label><br><br>
+            <input type="password" name="password" id="password" placeholder="Enter your password" required><br><br>
+            <button type="submit">Login</button><br><br>
+            <ul>
+                <li><a href="">Forgot password?</a></li>
+                <li>or</li>
+                <li><a href="">SignUp</a></li>
+            </ul>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            let userIndex = users.findIndex(user => user.email === email);
+            if (userIndex!==-1) {
+                if (users[userIndex].password === password) {
+                    alert("Đăng nhập thành công");
+                }else{
+                    event.preventDefault();
+                    alert("Sai mật khẩu");
+                }
+            }
+            
+        });
+    </script>
+</body>
+</html>

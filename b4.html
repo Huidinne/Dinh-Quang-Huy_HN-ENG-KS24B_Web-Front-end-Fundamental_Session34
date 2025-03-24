@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: #f4f4f4;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    div {
+        box-shadow: 2px 2px 3px #aaaaaa;
+        border-radius: 10px;
+        background-color: white;
+        width: 350px;
+        margin: auto;
+        margin-top: 50px;
+    }
+    input {
+        border: 1px solid #d5d5d5;
+        border-radius: 5px;
+        width: 250px;
+        height: 30px;
+        padding: 0px 10px;
+    }
+    form {
+        padding: 30px;
+    }
+    h2 {
+        margin-top: 0px;
+        color: #333333;
+        text-align: center;
+    }
+    button {
+        border: none;
+        border-radius: 5px;
+        color: white;
+        background-color: #28a745;
+        height: 35px;
+    }
+    ul{
+        list-style: none;
+        padding: 0px;
+    }
+    li{
+        padding-bottom: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #eeeeee ;
+    }
+    .delete{
+        height: 25px;
+        background-color: #dc3545;
+    }
+</style>
+<body>
+    <div>
+        <form action="">
+            <h2>Todo List</h2>
+            <input type="text" name="input" id="input" placeholder="Thêm việc cần làm..."><br><br>
+            <button type="button" id="btn">Thêm</button><br><br>
+            <ul id="myUl">
+                
+            </ul>
+        </form>
+        <script>
+            document.getElementById("btn").addEventListener('click', function() {
+                let input = document.getElementById("input"); 
+                let taskText = input.value.trim(); 
+                if (taskText === "") {
+                    alert("Vui lòng nhập công việc!"); 
+                    return;
+                }
+                let listTask = document.getElementById("myUl");
+                input.value = "";
+                listTask.innerHTML += `
+                    <li>
+                        <span>${taskText}</span> 
+                        <button type="button" class="delete" onclick="deleteTask(event)">Xóa</button>
+                    </li>`; 
+            });
+            function deleteTask(event) {
+                let button = event.target;
+                let taskItem = button.parentElement;
+                taskItem.remove();
+            }
+        </script>
+        
+    </div>
+</body>
+</html>
